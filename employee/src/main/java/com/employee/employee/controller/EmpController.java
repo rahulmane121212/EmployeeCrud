@@ -3,7 +3,9 @@ package com.employee.employee.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +38,8 @@ public class EmpController {
 		
 		}
 	
+	
+	
 	@GetMapping("/getEmpById/{empId}")
 	public ResponseEntity < Employee > getEmpById(@PathVariable String empId) throws ResourceNotFoundException{
 		return ResponseEntity.ok().body(empService.getEmpById(empId));
@@ -47,6 +51,13 @@ public class EmpController {
 		employee.setEmpId(empId);
 		return ResponseEntity.ok().body(this.empService.updateEmp(employee));
 		
+	}
+	
+	
+	@DeleteMapping("/deleteEmpById/{empId}")
+	public HttpStatus deleteEmp (@PathVariable String empId) throws ResourceNotFoundException{
+		this.empService.deleteById(empId);
+		return HttpStatus.OK;
 	}
 	
 	
