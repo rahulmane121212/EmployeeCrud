@@ -15,6 +15,8 @@ public interface EmpService {
 
 	Employee updateEmp(Employee employee) throws ResourceNotFoundException;
 
+	void deleteById(String empId) throws ResourceNotFoundException;
+
 	
 
 }

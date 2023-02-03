@@ -58,6 +58,23 @@ public class EmpServiceImpl implements EmpService{
 		}
 		
 	}
+
+	@Override
+	public void deleteById(String empId) throws ResourceNotFoundException {
+		Optional < Employee > empDetails = this.empRepository.findById(empId);
+		
+		if(empDetails.isPresent()) {
+			this.empRepository.deleteById(empId);
+		}
+		else {
+			throw new ResourceNotFoundException("Record Not Found");
+		}
+		
+	}
+	
+	
+	
+	
 	
 	
 
